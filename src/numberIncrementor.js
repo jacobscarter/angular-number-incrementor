@@ -15,15 +15,17 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
 
             $scope.output = $scope.spinnerValue;
-            
+
             $scope.spinnerValue = 0;
 
             $scope.increase = function(){
                 $scope.spinnerValue++;
+                $scope.output = $scope.spinnerValue;
             };
 
             $scope.decrease = function(){
                 $scope.spinnerValue--;
+                $scope.output = $scope.spinnerValue;
             };
 
             
