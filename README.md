@@ -37,7 +37,12 @@ sample controller:
 
 `mincount` and `maxcount` attributes take numbers as values.  The set the limit for how low and how high the incrementor will count.
 
+**setting start value**
+
+    <number-incrementor output="output" mincount="-1" maxcount="5" start="2"></number-incrementor>
+    
+`start` attribute takes a number as a value.  This number is the number that the incrementor starts at.
+    
 ##Coming Soon
 
 * Setting "increment by" value
-* Set starting number for incrementor
