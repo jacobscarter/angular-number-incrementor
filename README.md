@@ -9,11 +9,15 @@ bower install:
 
 ##Use
 
-dependency injection:
+**dependency injection:**
 
     angular.module('myApp', ['angular-number-incrementor']);
 
-using directive:
+**using directive:**
+
+    <number-incrementor></number-incrementor>
+    
+**accessing output:**
 
     <number-incrementor output="output"></number-incrementor>
 
@@ -27,7 +31,12 @@ sample controller:
             $scope.output = 0
         }]);
 
+**setting min and max counts:**
+
+    <number-incrementor output="output" mincount="-1" maxcount="5"></number-incrementor>
+
+`mincount` and `maxcount` attributes take numbers as values.  The set the limit for how low and how high the incrementor will count.
+
 ##Coming Soon
 
-* Setting min and max number counts
 * Setting "increment by" value
