@@ -1,6 +1,6 @@
 /**
  * A UI Component For Incrementing Numbers
- * @version v1.0.0 - 2015-01-30 * @link https://github.com/jacobscarter/angular-number-incrementor
+ * @version v1.0.1 - 2015-01-30 * @link https://github.com/jacobscarter/angular-number-incrementor
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -27,26 +27,40 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
         replace: true,
         transclude: true,
         scope: {
-            output : '='
+            output : '=',
+            mincount : '=',
+            maxcount : '='
         },
         templateUrl: function(element, attributes) {
           return attributes.template || "numberincrementor.html";
         },
         link: function($scope, $element, $attrs) {
 
-
             $scope.output = $scope.spinnerValue;
+
+
 
             $scope.spinnerValue = 0;
 
             $scope.increase = function(){
-                $scope.spinnerValue++;
-                $scope.output = $scope.spinnerValue;
+                if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
+                    $scope.spinnerValue++;
+                    $scope.output = $scope.spinnerValue;
+                } else if(!$scope.maxcount){
+                    $scope.spinnerValue++;
+                    $scope.output = $scope.spinnerValue;
+                }
+                
             };
 
             $scope.decrease = function(){
-                $scope.spinnerValue--;
-                $scope.output = $scope.spinnerValue;
+                if($scope.mincount && (typeof $scope.mincount === 'number') && ($scope.spinnerValue > $scope.mincount)){
+                    $scope.spinnerValue--;
+                    $scope.output = $scope.spinnerValue;
+                } else if(!$scope.mincount){
+                    $scope.spinnerValue--;
+                    $scope.output = $scope.spinnerValue;
+                }
             };
 
             
