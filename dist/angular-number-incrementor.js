@@ -1,6 +1,6 @@
 /**
  * A UI Component For Incrementing Numbers
- * @version v1.0.1 - 2015-01-30 * @link https://github.com/jacobscarter/angular-number-incrementor
+ * @version v1.0.2 - 2015-01-30 * @link https://github.com/jacobscarter/angular-number-incrementor
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -46,7 +46,7 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
                 if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
                     $scope.spinnerValue++;
                     $scope.output = $scope.spinnerValue;
-                } else if(!$scope.maxcount){
+                } else if(!$scope.maxcount || (typeof $scope.maxcount !== 'number')){
                     $scope.spinnerValue++;
                     $scope.output = $scope.spinnerValue;
                 }
@@ -57,7 +57,7 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
                 if($scope.mincount && (typeof $scope.mincount === 'number') && ($scope.spinnerValue > $scope.mincount)){
                     $scope.spinnerValue--;
                     $scope.output = $scope.spinnerValue;
-                } else if(!$scope.mincount){
+                } else if(!$scope.mincount || (typeof $scope.mincount !== 'number')){
                     $scope.spinnerValue--;
                     $scope.output = $scope.spinnerValue;
                 }
