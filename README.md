@@ -26,3 +26,8 @@ sample controller:
             //set initial value to zero
             $scope.output = 0
         }]);
+
+##Coming Soon
+
+* Setting min and max number counts
+* Setting "increment by" value
