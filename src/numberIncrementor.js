@@ -25,7 +25,7 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
                 if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
                     $scope.spinnerValue++;
                     $scope.output = $scope.spinnerValue;
-                } else if(!$scope.maxcount){
+                } else if(!$scope.maxcount || (typeof $scope.maxcount !== 'number')){
                     $scope.spinnerValue++;
                     $scope.output = $scope.spinnerValue;
                 }
@@ -36,7 +36,7 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
                 if($scope.mincount && (typeof $scope.mincount === 'number') && ($scope.spinnerValue > $scope.mincount)){
                     $scope.spinnerValue--;
                     $scope.output = $scope.spinnerValue;
-                } else if(!$scope.mincount){
+                } else if(!$scope.mincount || (typeof $scope.mincount !== 'number')){
                     $scope.spinnerValue--;
                     $scope.output = $scope.spinnerValue;
                 }
