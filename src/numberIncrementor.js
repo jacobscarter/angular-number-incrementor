@@ -17,9 +17,13 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.output = $scope.spinnerValue;
 
+            if($scope.mincount && (typeof $scope.mincount === "number") && $scope.mincount > 0){
+                $scope.spinnerValue = $scope.mincount
+            } else {
+                $scope.spinnerValue = 0;
+            }
 
-
-            $scope.spinnerValue = 0;
+            
 
             $scope.increase = function(){
                 if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
