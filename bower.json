@@ -1,0 +1,18 @@
+{
+  "name": "angular-number-incrementor",
+  "version": "1.0.0",
+  "main": "./dist/angular-number-incrementor.min.js",
+  "description": "A UI Component For Incrementing Numbers",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jacobscarter/angular-number-incrementor.git"
+  },
+  "dependencies": {
+    "angular": "*"
+  },
+  "ignore": [
+    "node_modules",
+    "components",
+    "lib"
+  ]
+}
