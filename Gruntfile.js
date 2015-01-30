@@ -141,8 +141,8 @@ module.exports = function(grunt) {
     'recess',
     'html2js',
     'concat', 
-    'uglify'
-    //'karma:build'
+    'uglify',
+    'karma:build'
     ]);
 
   grunt.registerTask('test', ['build']);
