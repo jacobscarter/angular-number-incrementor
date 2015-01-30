@@ -1,0 +1,41 @@
+.spinner {
+  width: 100px;
+}
+
+.spinner input {
+  text-align: right;
+}
+
+.input-group-btn-vertical {
+  position: relative;
+  display: table-cell;
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.input-group-btn-vertical > .btn {
+  position: relative;
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  margin-left: -1px;
+  border-radius: 0;
+}
+
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical span {
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
