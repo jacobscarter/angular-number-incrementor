@@ -42,7 +42,10 @@ sample controller:
     <number-incrementor output="output" mincount="-1" maxcount="5" start="2"></number-incrementor>
     
 `start` attribute takes a number as a value.  This number is the number that the incrementor starts at.
-    
-##Coming Soon
 
-* Setting "increment by" value
+**setting increment value**
+
+    <number-incrementor output="output" mincount="-1" maxcount="5" start="2" increment="5"></number-incrementor>
+    
+`increment` attribute takes a number as a value.  This number is the number that the incrementor increases or decreases by.
+
