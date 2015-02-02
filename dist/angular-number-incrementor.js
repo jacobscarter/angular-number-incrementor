@@ -1,6 +1,6 @@
 /**
  * A UI Component For Incrementing Numbers
- * @version v1.0.4 - 2015-01-30 * @link https://github.com/jacobscarter/angular-number-incrementor
+ * @version v1.0.5 - 2015-02-02 * @link https://github.com/jacobscarter/angular-number-incrementor
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -30,7 +30,8 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
             output : '=',
             mincount : '=',
             maxcount : '=',
-            start : '='
+            start : '=',
+            increment : '='
         },
         templateUrl: function(element, attributes) {
           return attributes.template || "numberincrementor.html";
@@ -39,16 +40,32 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.output = $scope.spinnerValue;
 
+            var startValue = 0;
+
+            var incrementor = 1;
+
+            if($scope.increment && (typeof $scope.increment === 'number')){
+                incrementor = $scope.increment;
+            }
+
             if($scope.start && (typeof $scope.start === 'number')){
-                $scope.spinnerValue = $sope.start;
+                $scope.spinnerValue = $scope.start;
+                startValue = $scope.start;
                 $scope.output = $scope.spinnerValue;
             }
 
             if($scope.mincount && (typeof $scope.mincount === "number") && $scope.mincount > 0){
+
                 $scope.spinnerValue = $scope.mincount;
                 $scope.output = $scope.spinnerValue;
             } else {
-                $scope.spinnerValue = 0;
+                $scope.spinnerValue = startValue;
+                $scope.output = $scope.spinnerValue;
+            }
+            console.log('min and start: ', $scope.mincount > startValue);
+            if($scope.mincount > startValue){
+                startValue = $scope.mincount;
+                $scope.spinnerValue = startValue;
                 $scope.output = $scope.spinnerValue;
             }
 
@@ -56,10 +73,12 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.increase = function(){
                 if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
-                    $scope.spinnerValue++;
-                    $scope.output = $scope.spinnerValue;
+                    if($scope.spinnerValue + incrementor <= $scope.maxcount){
+                        $scope.spinnerValue = $scope.spinnerValue + incrementor;
+                        $scope.output = $scope.spinnerValue;
+                    }
                 } else if(!$scope.maxcount || (typeof $scope.maxcount !== 'number')){
-                    $scope.spinnerValue++;
+                    $scope.spinnerValue = $scope.spinnerValue + incrementor;
                     $scope.output = $scope.spinnerValue;
                 }
                 
@@ -67,10 +86,12 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.decrease = function(){
                 if($scope.mincount && (typeof $scope.mincount === 'number') && ($scope.spinnerValue > $scope.mincount)){
-                    $scope.spinnerValue--;
-                    $scope.output = $scope.spinnerValue;
+                    if($scope.spinnerValue - incrementor >= $scope.mincount){
+                        $scope.spinnerValue = $scope.spinnerValue - incrementor;
+                        $scope.output = $scope.spinnerValue;
+                    }
                 } else if(!$scope.mincount || (typeof $scope.mincount !== 'number')){
-                    $scope.spinnerValue--;
+                    $scope.spinnerValue = $scope.spinnerValue - incrementor;
                     $scope.output = $scope.spinnerValue;
                 }
             };
