@@ -9,7 +9,8 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
             output : '=',
             mincount : '=',
             maxcount : '=',
-            start : '='
+            start : '=',
+            increment : '='
         },
         templateUrl: function(element, attributes) {
           return attributes.template || "numberincrementor.html";
@@ -19,6 +20,12 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
             $scope.output = $scope.spinnerValue;
 
             var startValue = 0;
+
+            var incrementor = 1;
+
+            if($scope.increment && (typeof $scope.increment === 'number')){
+                incrementor = $scope.increment;
+            }
 
             if($scope.start && (typeof $scope.start === 'number')){
                 $scope.spinnerValue = $scope.start;
@@ -45,10 +52,12 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.increase = function(){
                 if($scope.maxcount && (typeof $scope.maxcount === 'number') && ($scope.spinnerValue < $scope.maxcount)){
-                    $scope.spinnerValue++;
-                    $scope.output = $scope.spinnerValue;
+                    if($scope.spinnerValue + incrementor <= $scope.maxcount){
+                        $scope.spinnerValue = $scope.spinnerValue + incrementor;
+                        $scope.output = $scope.spinnerValue;
+                    }
                 } else if(!$scope.maxcount || (typeof $scope.maxcount !== 'number')){
-                    $scope.spinnerValue++;
+                    $scope.spinnerValue = $scope.spinnerValue + incrementor;
                     $scope.output = $scope.spinnerValue;
                 }
                 
@@ -56,10 +65,12 @@ angular.module('angular-number-incrementor').directive('numberIncrementor', [ fu
 
             $scope.decrease = function(){
                 if($scope.mincount && (typeof $scope.mincount === 'number') && ($scope.spinnerValue > $scope.mincount)){
-                    $scope.spinnerValue--;
-                    $scope.output = $scope.spinnerValue;
+                    if($scope.spinnerValue - incrementor >= $scope.mincount){
+                        $scope.spinnerValue = $scope.spinnerValue - incrementor;
+                        $scope.output = $scope.spinnerValue;
+                    }
                 } else if(!$scope.mincount || (typeof $scope.mincount !== 'number')){
-                    $scope.spinnerValue--;
+                    $scope.spinnerValue = $scope.spinnerValue - incrementor;
                     $scope.output = $scope.spinnerValue;
                 }
             };
